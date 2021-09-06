@@ -14,19 +14,15 @@ int main() {
 		{	
 			if (str[j] == '(' || str[j] == '[') s.push(str[j]);
 			else if (str[j] == ')') {
-				if (s.empty()) {
+				if (s.empty() || s.top() == '[') {
 					flag = false;
 					break;
 				}
 				else if (s.top() == '(') {
 					s.pop();
-				}
-				else if (s.top() == '[') {
-					flag = false;
-					break;
 				}
 			}
-			else if (str[j] == ']') {
+			else if (str[j] == ']' || s.top() == '(') {
 				if (s.empty()) {
 					flag = false;
 					break;
@@ -34,10 +30,7 @@ int main() {
 				else if (s.top() == '[') {
 					s.pop();
 				}
-				else if (s.top() == '(') {
-					flag = false;
-					break;
-				}
+				
 			}
 		}
 		if (s.empty() && flag) cout << "yes" << endl;
