@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
+#define FASTIO std::ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 int N, cnt=0;
 void recursive(int num) {
 	string ul = "";
@@ -21,6 +22,7 @@ void recursive(int num) {
 	cout << ul << "라고 답변하였지.\n";
 }
 int main() {
+	FASTIO;
 	cin >> N;
 	cout << "어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.\n";
 	recursive(N);
