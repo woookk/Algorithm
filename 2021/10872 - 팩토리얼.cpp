@@ -1,11 +1,11 @@
 #include<iostream>
 using namespace std;
 int N, m=1;
-int factorial(int N) {
-	if (N <= 1);
+int factorial(int n) {
+	if (n <= 1);
 	else {
-		m *= N;
-		factorial(N - 1);
+		m *= n;
+		factorial(n - 1);
 	}
 	return m;
 }
