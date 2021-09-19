@@ -4,7 +4,7 @@ using namespace std;
 #define FASTIO std::ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 int N, cnt=0;
 void recursive(int num) {
-	string ul = "";
+	string ul = ""; //underline
 	for (int i = 0; i < cnt; i++) ul += "____";
 	cout << ul << "\"Àç±ÍÇÔ¼ö°¡ ¹º°¡¿ä?\"\n";
 	if (num == 0) {
