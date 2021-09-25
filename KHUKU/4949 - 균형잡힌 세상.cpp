@@ -22,8 +22,8 @@ int main() {
 					s.pop();
 				}
 			}
-			else if (str[j] == ']' || s.top() == '(') {
-				if (s.empty()) {
+			else if (str[j] == ']') {
+				if (s.empty() || s.top() == '(') {
 					flag = false;
 					break;
 				}
