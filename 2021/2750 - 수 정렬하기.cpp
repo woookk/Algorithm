@@ -1,16 +1,20 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
 using namespace std;
-
 int main() {
-	int N, num[1000];
-	cin >> N;
-	for (int i = 0; i < N; i++) {
-		cin >> num[i];
-	}
-	sort(num, num + N);
-	for (int i = 0; i < N; i++) {
-		cout << num[i] << "\n";
-	}
-	return 0;
+    int N;
+    int num[1000] = { 0 };
+    int tmp;
+    cin >> N;
+    for (int i = 0; i < N; i++)
+        cin >> num[i];
+    for (int i = N; i > 1; i--)
+        for (int j = 0; j + 1 < i; j++)
+            if (num[j] > num[j + 1])
+            {
+                tmp = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = tmp;
+            }
+    for (int i = 0; i < N; i++)
+        cout << num[i] << '\n';
 }
