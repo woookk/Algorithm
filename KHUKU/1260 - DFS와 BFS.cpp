@@ -5,7 +5,7 @@
 #include<algorithm>
 using namespace std;
 
-bool check[1001];
+bool cnt[1001];
 vector<int> line[1001];
 queue<int> q;
 int N, M, V;
@@ -13,11 +13,11 @@ int from, to;
 
 void dfs(int start) {
 	cout << start << ' ';
-	check[start] = 1;
+	cnt[start] = 1;
 	for (int i = 0; i < line[start].size(); i++) {
 		int next = line[start][i];
 
-		if (check[next] == 0) {
+		if (cnt[next] == 0) {
 			dfs(next);
 		}
 			
@@ -28,17 +28,17 @@ void bfs(int start) {
 		int front = q.front();
 		q.pop();
 
-		if (check[front] == 0)
+		if (cnt[front] == 0)
 		{
 			cout << front << ' ';
-			check[front] = 1;
+			cnt[front] = 1;
 		}
 
 		for (int i = 0; i < line[front].size(); i++) {
-			if (check[line[front][i]] == 0) {
+			if (cnt[line[front][i]] == 0) {
 				q.push(line[front][i]);
 				cout << line[front][i]<<' ';
-				check[line[front][i]] = 1;
+				cnt[line[front][i]] = 1;
 			}
 		}
 	}
@@ -57,7 +57,7 @@ int main() {
 	dfs(V);
 
 	cout << "\n";
-	fill(check, check + 1001, 0);
+	fill(cnt, cnt + 1001, 0);
 	q.push(V);
 	bfs(V);
 	return 0;
