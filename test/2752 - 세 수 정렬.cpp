@@ -15,3 +15,5 @@ int main() {
 	}
 	return 0;
 }
+
+//max(a, b, c), min(a, b, c), a+b+c-max(a,b,c)-min(a,b,c)로도 풀이 가능.
