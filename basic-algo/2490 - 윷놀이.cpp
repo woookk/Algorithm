@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-#define FASTIO std::ios_base::sync_with_stdio(0); cin.tie(0);
+#define FASTIO ios::sync_with_stdio(0); cin.tie(0);
 
 int main() {
 	int A, B, C, D;
