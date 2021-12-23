@@ -6,7 +6,7 @@ using namespace std;
 #define X first
 #define Y second
 
-int board[1001][1001];
+int box[1001][1001];
 int dist[1001][1001];
 int N, M;
 int dx[4] = { 1, 0, -1, 0 };
@@ -18,10 +18,10 @@ int main() {
 
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
-			cin >> board[i][j];
-			if (board[i][j] == 1)
+			cin >> box[i][j];
+			if (box[i][j] == 1)
 				q.push({ i, j });
-			if (board[i][j] == 0)
+			if (box[i][j] == 0)
 				dist[i][j] = -1;
 		}
 	}
