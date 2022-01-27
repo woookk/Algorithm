@@ -29,7 +29,7 @@ int main() {
 				int nx = curX + dx[dir];
 				int ny = curY + dy[dir];
 				if (nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
-				if (dist[cnt+1][nx][ny] > 0) continue;
+				if (board[nx][ny] == '0' || dist[cnt + 1][nx][ny] > 0) continue;
 				dist[cnt + 1][nx][ny] = dist[cnt][curX][curY] + 1;
 				q.push({ nx, ny, cnt + 1 });
 			}
