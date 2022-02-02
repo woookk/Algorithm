@@ -6,10 +6,10 @@ bool prime[1001];
 
 void primecheck() {
 	for (int i = 2; i <= 1000; i++) prime[i] = 1;
-	for (int i = 2; i <= 1000; i++) {
+	for (int i = 2; i*i <= 1000; i++) {
 		if (prime[i] == 0) continue;
 
-		for (int j = 2 * i; j <= 1000; j += i) {
+		for (int j = i * i; j <= 1000; j += i) {
 			if (prime[j] == 0) continue;
 			else prime[j] = 0;
 		}
