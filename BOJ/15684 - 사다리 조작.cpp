@@ -7,68 +7,64 @@
 
 #include <iostream>
 #include <algorithm>
-#include <vector>
 using namespace std;
 #define FASTIO ios::sync_with_stdio(0); cin.tie(0);
-
 #define X first
 #define Y second
 
-bool ladder[32][12];
-int idxs[3];
-vector<pair<int, int>> coords;
-int n, m, h;
+int N, M, H;
+int ladder[32][13];
+int ans = 4;
 
-bool check() {
-  for (int j = 1; j <= n; j++) {
-    int cur = j;
-    for (int i = 1; i <= h; i++) {
-      if (ladder[i][cur - 1]) cur--;
-      else if (ladder[i][cur]) cur++;
+bool check(){
+    for(int i = 1; i <= N; i++){
+        int num = i;
+        int cur = 1;
+        while(cur <= H){
+            if(!ladder[cur][num]) cur++;
+            else {
+                num = ladder[cur][num];
+                cur++;
+            }
+        }
+        if(i != num) return false;
     }
-    if (cur != j) return false;
-  }
-  return true;
+    return true;
+}
+void calc(int st, int k, int maxk){
+    if(k == maxk){
+        if(check()){
+            ans = min(k, ans);
+            return;
+        }
+        return;
+    }
+    for(int i = st; i <= H; i++){
+        for(int j = 1; j < N; j++){
+            if(ladder[i][j] || ladder[i][j + 1]) continue;
+            ladder[i][j] = j + 1;
+            ladder[i][j + 1] = j;
+            calc(i, k + 1, maxk);
+            ladder[i][j] = 0;
+            ladder[i][j + 1] = 0;
+        }
+    }
 }
 
-int main() {
+int main(){
     FASTIO;
-    cin >> n >> m >> h;
-    while (m--) {
+    cin >> N >> M >> H;
+    for(int i = 0; i < M; i++){
         int a, b;
         cin >> a >> b;
-        ladder[a][b] = true;
+        ladder[a][b] = b + 1;
+        ladder[a][b + 1] = b;
     }
-
-  for (int i = 1; i <= h; i++)
-    for (int j = 1; j < n; j++) {
-      if (ladder[i][j - 1] || ladder[i][j] || ladder[i][j + 1]) continue;
-      coords.push_back({i, j});
+    for(int i = 0; i < 4; i++){
+        calc(1, 0, i);
+        if(ans != 4) break;
     }
-
-
-  if(check()){
-    cout << 0;
+    if(ans == 4) ans = -1;
+    cout << ans;
     return 0;
-  }
-
-  int ans = 0x7f7f7f7f;
-  int sz = coords.size();
-  for(int i = 0; i < sz; i++){
-    ladder[coords[i].X][coords[i].Y] = true;
-    if(check()) ans = min(ans, 1);
-    for(int j = i+1; j < sz; j++){
-      ladder[coords[j].X][coords[j].Y] = true;
-      if(check()) ans = min(ans, 2);
-      for(int k = j+1; k < sz; k++){
-        ladder[coords[k].X][coords[k].Y] = true;
-        if(check()) ans = min(ans, 3);
-        ladder[coords[k].X][coords[k].Y] = false;
-      }
-      ladder[coords[j].X][coords[j].Y] = false;
-    }
-    ladder[coords[i].X][coords[i].Y] = false;
-  }
-  if(ans == 0x7f7f7f7f) ans = -1;
-  cout << ans;
 }
