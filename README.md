@@ -1,12 +1,12 @@
 # Algorithm
 
-baekjoon, solved.ac 풀이
+baekjoon, solved.ac
 
     file name: 문제번호 - 문제 이름
     commit message: 유형
 
 
-programmers 풀이
+programmers
 
     file name: 문제 이름
     commit message: level - 유형
