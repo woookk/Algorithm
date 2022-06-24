@@ -15,7 +15,7 @@ string solution(string s) {
     int pos = 0;
     string delim = " ";
     string token;
-    while( (pos = s.find(delim)) != string::npos){
+    while((pos = s.find(delim)) != string::npos){
         token = s.substr(0, pos);
         s.erase(0, pos + delim.length());
         for(int i = 0; i < token.length(); i++){
