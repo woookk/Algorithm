@@ -19,6 +19,7 @@ void DFS(int cur, int depth) {
     }
     vis[cur] = 1;
     for (int nx: adj[cur]) {
+        if (ans) return;
         if (vis[nx]) continue;
         DFS(nx, depth + 1);
     }
