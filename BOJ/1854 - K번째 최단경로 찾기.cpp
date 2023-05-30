@@ -12,8 +12,6 @@
 #include <queue>
 using namespace std;
 #define FASTIO ios::sync_with_stdio(0); cin.tie(0);
-#define X first
-#define Y second
 
 const int INF = INT_MAX / 5;
 int n, m, k;
