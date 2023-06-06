@@ -10,15 +10,18 @@
 #include <queue>
 #include <climits>
 #include <algorithm>
+
 using namespace std;
+
 #define FASTIO ios::sync_with_stdio(0); cin.tie(0);
 
 const int INF = INT_MAX / 5;
+
 int n, m;
 int st, en;
 vector<int> dist(505);
 vector<pair<int, int>> adj[505];
-vector<int> shortest[505];
+vector<int> shortest_paths[505];
 vector<bool> vis(505);
 
 void dijkstra(int cur) {
@@ -29,25 +32,24 @@ void dijkstra(int cur) {
     pq.push({dist[cur], cur});
     
     while (!pq.empty()) {
-        auto [curDist, curNode] = pq.top();
+        auto [cur_dist, cur_node] = pq.top();
         pq.pop();
         
-        if (curDist != dist[curNode]) continue;
+        if (cur_dist != dist[cur_node]) continue;
         
-        for (auto [nxDist, nxNode]: adj[curNode]) {
-            if (nxDist == -1) continue;
-            if (dist[nxNode] < dist[curNode] + nxDist) continue;
-            if (dist[nxNode] == dist[curNode] + nxDist) {
-                shortest[nxNode].push_back(curNode);
+        for (auto [nx_dist, nx_node]: adj[cur_node]) {
+            if (nx_dist == -1) continue;
+            if (dist[nx_node] < dist[cur_node] + nx_dist) continue;
+            if (dist[nx_node] == dist[cur_node] + nx_dist) {
+                shortest_paths[nx_node].push_back(cur_node);
             } else {
-                dist[nxNode] = dist[curNode] + nxDist;
-                shortest[nxNode].clear();
-                shortest[nxNode].push_back(curNode);
-                pq.push({dist[nxNode], nxNode});
+                dist[nx_node] = dist[cur_node] + nx_dist;
+                shortest_paths[nx_node].clear();
+                shortest_paths[nx_node].push_back(cur_node);
+                pq.push({dist[nx_node], nx_node});
             }
         }
     }
-    
 }
 
 void bfs(int cur) {
@@ -61,10 +63,10 @@ void bfs(int cur) {
         if (vis[cur]) continue;
         vis[cur] = true;
         
-        for (int prev: shortest[cur]) {
-            for (int nxIdx = 0; nxIdx < adj[prev].size(); nxIdx++) {
-                if (adj[prev][nxIdx].second == cur) {
-                    adj[prev][nxIdx].first = -1;
+        for (int prev: shortest_paths[cur]) {
+            for (int nx_idx = 0; nx_idx < adj[prev].size(); nx_idx++) {
+                if (adj[prev][nx_idx].second == cur) {
+                    adj[prev][nx_idx].first = -1;
                 }
             }
             q.push(prev);
@@ -80,7 +82,7 @@ int main() {
         cin >> st >> en;
         for (int i = 0; i <= n; i++) {
             adj[i].clear();
-            shortest[i].clear();
+            shortest_paths[i].clear();
         }
         fill(vis.begin(), vis.end(), 0);
         
