@@ -1,6 +1,6 @@
 # Algorithm
 
-## baekjoon, solved.acå
+## baekjoon, solved.ac
 
     file name: 문제 번호 - 문제 이름
     commit message: 유형
