@@ -1,4 +1,5 @@
 # Algorithm
+『BOJ, Programmers, Codeforces』에서 알고리즘 문제를 풀이하고 해결과정을 정리하는 공간입니다.
 
 ## baekjoon, solved.ac
 
